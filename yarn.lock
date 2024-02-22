@@ -5608,6 +5608,11 @@
   dependencies:
     "lodash" "^4.17.21"
 
+"react-native-radio-buttons-group@^3.0.8":
+  "integrity" "sha512-1xqFAp6UByW1S7U9aemaS0HwRb4RR05AGbIX0szigxz7BZhRgm7ttURMRkzaaW+4rQL/RccTYiNfdS6vRDr8Kg=="
+  "resolved" "https://registry.npmjs.org/react-native-radio-buttons-group/-/react-native-radio-buttons-group-3.0.8.tgz"
+  "version" "3.0.8"
+
 "react-native-safe-area-context@^4.9.0", "react-native-safe-area-context@>= 3.0.0":
   "integrity" "sha512-/OJD9Pb8IURyvn+1tWTszWPJqsbZ4hyHBU9P0xhOmk7h5owSuqL0zkfagU0pg7Vh0G2NKQkaPpUKUMMCUMDh/w=="
   "resolved" "https://registry.npmjs.org/react-native-safe-area-context/-/react-native-safe-area-context-4.9.0.tgz"
