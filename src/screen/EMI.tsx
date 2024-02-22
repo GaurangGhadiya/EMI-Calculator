@@ -12,32 +12,23 @@ import {
 import React, {useState} from 'react';
 import Slider from '@react-native-community/slider';
 
-import {Dropdown} from 'react-native-element-dropdown';
-
-const data1 = [
-  {label: 'Years', value: '1'},
-  {label: 'Months', value: '2'},
-  {label: 'Days', value: '3'},
-];
-
-const FD = () => {
-  const [value, setValue] = useState<any>('1');
-  const [isFocus, setIsFocus] = useState(false);
+const EMI = () => {
   const [data, setdata] = useState({
-    investment: 5000,
+    investment: 100000,
     intrest: 12,
     time: 10,
     amount: 0,
     return: 0,
     total: 0,
+    emi : 0
   });
   const [error, seterror] = useState({});
 
   const handleChange = (name: string, value: string) => {
     let error: any = {};
     if (name == 'investment') {
-      if (parseInt(value) < 5000 || !parseInt(value)) {
-        error['investment'] = 'Minimum value allowed is 500';
+      if (parseInt(value) < 100000 || !parseInt(value)) {
+        error['investment'] = 'Minimum value allowed is 100000';
       }
       if (data.intrest < 1 || !parseInt(data.intrest)) {
         error['intrest'] = 'Minimum value allowed is 1';
@@ -50,8 +41,8 @@ const FD = () => {
       if (parseInt(value) < 1 || !parseInt(value)) {
         error['intrest'] = 'Minimum value allowed is 1';
       }
-      if (data.investment < 5000 || !parseInt(data.investment)) {
-        error['investment'] = 'Minimum value allowed is 500';
+      if (data.investment < 100000 || !parseInt(data.investment)) {
+        error['investment'] = 'Minimum value allowed is 100000';
       }
       if (data.time < 1 || !parseInt(data.time)) {
         error['time'] = 'Minimum value allowed is 1';
@@ -61,8 +52,8 @@ const FD = () => {
       if (parseInt(value) < 1 || !parseInt(value)) {
         error['time'] = 'Minimum value allowed is 1';
       }
-      if (data.investment < 5000 || !parseInt(data.investment)) {
-        error['investment'] = 'Minimum value allowed is 500';
+      if (data.investment < 100000 || !parseInt(data.investment)) {
+        error['investment'] = 'Minimum value allowed is 100000';
       }
       if (data.intrest < 1 || !parseInt(data.intrest)) {
         error['intrest'] = 'Minimum value allowed is 1';
@@ -78,34 +69,27 @@ const FD = () => {
   console.log('error', error);
 
   const calculate = () => {
-    const principalAmount = parseFloat(data.investment);
-    const interestRatePerDay = parseFloat(data.intrest) / 100 / 365; // Convert annual interest rate to daily rate
 
-    const interestRate = parseFloat(data.intrest) / 100;
+    const principal = parseFloat(data.investment);
+    const rateOfInterest = parseFloat(data.intrest) / 12 / 100; // Monthly interest rate
+    const tenureInMonths = parseFloat(data.time) *12 // Loan tenure in months
 
-    let timePeriod;
-    let futureVal;
-    if (value == '1') {
-      timePeriod = parseInt(data.time);
-    } else if (value == '2') {
-      timePeriod = parseInt(data.time) / 12;
-    } else if (value == '3') {
-      timePeriod = parseInt(data.time);
-    }
+    // Calculate EMI using the formula for EMI calculation
+    const emiAmount = (principal * rateOfInterest * Math.pow(1 + rateOfInterest, tenureInMonths)) /
+                      (Math.pow(1 + rateOfInterest, tenureInMonths) - 1);
 
-    if (value == '1' || value == '2') {
-      futureVal = principalAmount * Math.pow(1 + interestRate, timePeriod);
-    } else if (value == '3') {
-      futureVal =
-        principalAmount + principalAmount * interestRatePerDay * timePeriod;
-    }
+                      const totalInterestAmount = emiAmount * tenureInMonths - principal;
 
-    console.log('futureVal', futureVal);
+    Keyboard.dismiss();
+    let futureValue : 111
     setdata({
       ...data,
-      amount: data.investment,
-      return: Math.round(futureVal) - data.investment,
-      total: data.investment + (Math.round(futureVal) - data.investment),
+      emi : Math.round(emiAmount),
+      amount: data.investment ,
+      return: Math.round(totalInterestAmount) ,
+      total:
+        data.investment   + Math.round(totalInterestAmount) 
+        // + (Math.round(futureValue) - data.investment ),
     });
   };
   return (
@@ -121,7 +105,7 @@ const FD = () => {
         {/* <Text style={styles.name}>SIP Calculator</Text> */}
         <View>
           <View style={styles.outer}>
-            <Text style={styles.title}>Total investment</Text>
+            <Text style={styles.title}>Loan amount</Text>
             <View
               style={[
                 styles.box,
@@ -155,7 +139,7 @@ const FD = () => {
           </Text>
           <Slider
             style={styles.slider}
-            minimumValue={5000}
+            minimumValue={100000}
             maximumValue={1000000}
             value={data?.investment}
             onValueChange={(e: any) => handleChange('investment', e)}
@@ -167,7 +151,7 @@ const FD = () => {
         </View>
         <View>
           <View style={styles.outer}>
-            <Text style={styles.title}>Rate of intrest (p.a)</Text>
+            <Text style={styles.title}>Rate of interest (p.a)</Text>
             <View
               style={[
                 styles.box1,
@@ -181,7 +165,7 @@ const FD = () => {
                 keyboardType="numeric"
                 value={data?.intrest?.toString()}
                 onChangeText={value =>
-                  handleChange('intrest', parseInt(value) > 15 ? 15 : value)
+                  handleChange('intrest', parseInt(value) > 30 ? 30 : value)
                 }
               />
               <Text
@@ -197,7 +181,7 @@ const FD = () => {
           <Slider
             style={styles.slider}
             minimumValue={1}
-            maximumValue={15}
+            maximumValue={30}
             value={data?.intrest}
             onValueChange={(e: any) => handleChange('intrest', e)}
             step={1}
@@ -208,29 +192,7 @@ const FD = () => {
         </View>
         <View>
           <View style={styles.outer}>
-            <View style={styles.down}>
-              <Text style={styles.title}>Time period</Text>
-              <Dropdown
-                style={styles.dropdown}
-                placeholderStyle={styles.placeholderStyle}
-                selectedTextStyle={styles.selectedTextStyle}
-                inputSearchStyle={styles.inputSearchStyle}
-                itemTextStyle={{fontSize: 14}}
-                data={data1}
-                maxHeight={300}
-                labelField="label"
-                valueField="value"
-                placeholder={!isFocus ? 'Select item' : '...'}
-                value={value}
-                onFocus={() => setIsFocus(true)}
-                onBlur={() => setIsFocus(false)}
-                onChange={item => {
-                  setValue(item.value);
-                  setIsFocus(false);
-                }}
-              />
-            </View>
-
+            <Text style={styles.title}>Loan tenure (years)</Text>
             <View
               style={[
                 styles.box1,
@@ -243,35 +205,24 @@ const FD = () => {
                 ]}
                 keyboardType="numeric"
                 value={data?.time?.toString()}
-                onChangeText={val =>
-                  handleChange(
-                    'time',
-                    value == '1' && parseInt(val) > 25
-                      ? 25
-                      : value == '2' && parseInt(val) > 11
-                      ? 11
-                      : value == '3' && parseInt(val) > 31
-                      ? 31
-                      : val,
-                  )
+                onChangeText={value =>
+                  handleChange('time', parseInt(value) > 30 ? 30 : value)
                 }
               />
-              {/* <Text
-                  style={[
-                    styles.sym,
-                    {color: error.time ? '#EB5B3C' : '#00B386'},
-                  ]}>
-                  Yr
-                </Text> */}
+              <Text
+                style={[
+                  styles.sym,
+                  {color: error.time ? '#EB5B3C' : '#00B386'},
+                ]}>
+                Yr
+              </Text>
             </View>
           </View>
           <Text style={styles.error}>{error?.time && error?.time}</Text>
           <Slider
             style={styles.slider}
             minimumValue={1}
-            maximumValue={
-              value == '1' ? 25 : value == '2' ? 11 : value == '3' ? 31 : 0
-            }
+            maximumValue={30}
             value={data?.time}
             onValueChange={(e: any) => handleChange('time', e)}
             step={1}
@@ -306,19 +257,25 @@ const FD = () => {
           <View style={styles.bottom1}>
             <Text style={styles.title2}>Results</Text>
             <View style={styles.abc}>
-              <Text style={styles.t1}>Invested amount</Text>
+              <Text style={styles.t1}>Monthly EMI</Text>
+              <Text style={styles.t2}>
+                ₹{data.emi?.toLocaleString('en-IN')}
+              </Text>
+            </View>
+            <View style={styles.abc}>
+              <Text style={styles.t1}>Principal amount</Text>
               <Text style={styles.t2}>
                 ₹{data.amount?.toLocaleString('en-IN')}
               </Text>
             </View>
             <View style={styles.abc}>
-              <Text style={styles.t1}>Est. returns</Text>
+              <Text style={styles.t1}>Total interest</Text>
               <Text style={styles.t2}>
                 ₹{data?.return?.toLocaleString('en-IN')}
               </Text>
             </View>
             <View style={styles.abc}>
-              <Text style={styles.t1}>Total value</Text>
+              <Text style={styles.t1}>Total amount</Text>
               <Text style={styles.t2}>
                 ₹{data.total?.toLocaleString('en-IN')}
               </Text>
@@ -330,7 +287,7 @@ const FD = () => {
   );
 };
 
-export default FD;
+export default EMI;
 
 const styles = StyleSheet.create({
   error: {
@@ -444,55 +401,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     color: 'black',
-  },
-  container1: {
-    backgroundColor: 'white',
-    padding: 16,
-  },
-  dropdown: {
-    height: 50,
-    borderWidth: 0,
-    paddingHorizontal: 8,
-    width: 87,
-    marginLeft: 5,
-    color: '#00B386',
-  },
-  icon: {
-    marginRight: 2,
-  },
-  label: {
-    position: 'absolute',
-    backgroundColor: 'white',
-    left: 22,
-    top: 8,
-    zIndex: 999,
-    paddingHorizontal: 8,
-    fontSize: 12,
-    color: '#00B386',
-    fontWeight: '500',
-  },
-  placeholderStyle: {
-    fontSize: 12,
-    color: '#00B386',
-    fontWeight: '500',
-  },
-  selectedTextStyle: {
-    fontSize: 14,
-    color: '#00B386',
-    fontWeight: '500',
-  },
-  iconStyle: {
-    width: 20,
-    height: 20,
-  },
-  inputSearchStyle: {
-    height: 40,
-    fontSize: 12,
-    color: '#00B386',
-    fontWeight: '500',
-  },
-  down: {
-    flexDirection: 'row',
-    alignItems: 'center',
   },
 });

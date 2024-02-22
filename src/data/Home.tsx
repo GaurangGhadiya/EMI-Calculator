@@ -38,6 +38,8 @@ const Data = [
   {
     id: '5',
     title: 'EMI',
+    redirect: 'EMI',
+
     image:
       'https://assets-netstorage.groww.in/web-assets/nbg_mobile/prod/_next/static/media/emi.bf7e22de.png',
     description:
@@ -46,6 +48,8 @@ const Data = [
   {
     id: '6',
     title: 'GST',
+    redirect: 'GST',
+
     image:
       'https://assets-netstorage.groww.in/web-assets/nbg_mobile/prod/_next/static/media/ssy.519e79bf.png',
     description: 'Calculate your payable GST amount with a few clicks',
