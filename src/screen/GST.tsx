@@ -17,9 +17,8 @@ const GST = () => {
   const [selectedId, setSelectedId] = useState('1');
 
   useEffect(() => {
-    calculate()
-  }, [selectedId])
-  
+    calculate();
+  }, [selectedId]);
 
   const [data, setdata] = useState({
     investment: 1000,
@@ -91,29 +90,28 @@ const GST = () => {
   );
 
   const calculate = () => {
-    
     const amountValue = parseFloat(data.investment);
     const gstRateValue = parseFloat(data.intrest) / 100;
     const gstIncludedAmount = amountValue * (1 + gstRateValue);
     const gstExcludedAmount = amountValue / (1 + gstRateValue);
 
-    if(selectedId == "1"){
-        setdata({
-            ...data,
-            amount: data.investment * data.time * 12,
-            return:   Math.round(gstIncludedAmount) - data.investment,
-            total:Math.round(gstIncludedAmount) ,
-          });
-    }else{
-        setdata({
-            ...data,
-            amount: data.investment * data.time * 12,
-            return: data.investment - Math.round(gstExcludedAmount),
-            total:data.investment - (data.investment - Math.round(gstExcludedAmount))
-          });
+    if (selectedId == '1') {
+      setdata({
+        ...data,
+        amount: data.investment * data.time * 12,
+        return: Math.round(gstIncludedAmount) - data.investment,
+        total: Math.round(gstIncludedAmount),
+      });
+    } else {
+      setdata({
+        ...data,
+        amount: data.investment * data.time * 12,
+        return: data.investment - Math.round(gstExcludedAmount),
+        total:
+          data.investment - (data.investment - Math.round(gstExcludedAmount)),
+      });
     }
     Keyboard.dismiss();
-   
   };
   return (
     <SafeAreaView style={styles.main}>
@@ -132,9 +130,9 @@ const GST = () => {
               radioButtons={radioButtons}
               onPress={setSelectedId}
               selectedId={selectedId}
-              borderColor	="#444"
-              
-              containerStyle={styles.containerRadio}
+              selectedValue={selectedId}
+              selectedButtonStyle={styles.selectedButtonStyle}
+              unselectedButtonStyle={styles.unselectedButtonStyle}              containerStyle={styles.containerRadio}
               labelStyle={styles.labelStyle}
             />
           </View>
@@ -262,7 +260,9 @@ const GST = () => {
               </Text>
             </View>
             <View style={styles.abc}>
-              <Text style={styles.t1}>{selectedId == "1"?"Post" : "Pre"} GST amount</Text>
+              <Text style={styles.t1}>
+                {selectedId == '1' ? 'Post' : 'Pre'} GST amount
+              </Text>
               <Text style={styles.t2}>
                 ₹{data.total?.toLocaleString('en-IN')}
               </Text>
@@ -398,4 +398,12 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     // color : "red"
   },
+  selectedButtonStyle : {
+    backgroundColor : "red",
+    borderWidth : 0
+  },
+  unselectedButtonStyle : {
+    borderWidth : 2,
+    borderColor : "red"
+  }
 });
