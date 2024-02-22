@@ -396,7 +396,8 @@ const styles = StyleSheet.create({
   },
   labelStyle: {
     fontWeight: '500',
-    // color : "red"
+
+    color : "black"
   },
   selectedButtonStyle : {
     backgroundColor : "red",
