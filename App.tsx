@@ -24,7 +24,7 @@ function App(): React.JSX.Element {
   useEffect(() => {
     setTimeout(() => {
       setSplashVisible(false);
-    }, 2000); // Change the duration as needed
+    }, 1000); // Change the duration as needed
   }, []);
 
   return splashVisible ? <SplashScreen /> :     <NavigationContainer>
