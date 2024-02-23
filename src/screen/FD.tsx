@@ -124,7 +124,8 @@ const FD = () => {
       />
       <View style={styles.container}>
         {/* <Text style={styles.name}>SIP Calculator</Text> */}
-        <View>
+        <View style={styles.bottom1}>
+        <View style={{paddingHorizontal : 15}}>
           <View style={styles.outer}>
             <Text style={styles.title}>Total investment</Text>
             <View
@@ -170,7 +171,7 @@ const FD = () => {
             thumbTintColor="#00B386"
           />
         </View>
-        <View>
+        <View style={{paddingHorizontal : 15}}>
           <View style={styles.outer}>
             <Text style={styles.title}>Rate of intrest (p.a)</Text>
             <View
@@ -211,7 +212,7 @@ const FD = () => {
             thumbTintColor="#00B386"
           />
         </View>
-        <View>
+        <View style={{paddingHorizontal : 15}}>
           <View style={styles.outer}>
             <View style={styles.down}>
               <Text style={styles.title}>Time period</Text>
@@ -284,6 +285,7 @@ const FD = () => {
             maximumTrackTintColor="#00B386"
             thumbTintColor="#00B386"
           />
+        </View>
         </View>
 
         <View style={styles.btns}>
@@ -436,7 +438,7 @@ const styles = StyleSheet.create({
   btns: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginVertical: 20,
+    marginVertical: 10,
   },
   btn: {
     paddingHorizontal: 20,

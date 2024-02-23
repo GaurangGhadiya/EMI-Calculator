@@ -109,7 +109,8 @@ const EMI = () => {
       />
       <View style={styles.container}>
         {/* <Text style={styles.name}>SIP Calculator</Text> */}
-        <View>
+        <View style={styles.bottom1}>
+        <View style={{paddingHorizontal : 15}}>
           <View style={styles.outer}>
             <Text style={styles.title}>Loan amount</Text>
             <View
@@ -155,7 +156,7 @@ const EMI = () => {
             thumbTintColor="#00B386"
           />
         </View>
-        <View>
+        <View style={{paddingHorizontal : 15}}>
           <View style={styles.outer}>
             <Text style={styles.title}>Rate of interest (p.a)</Text>
             <View
@@ -196,7 +197,7 @@ const EMI = () => {
             thumbTintColor="#00B386"
           />
         </View>
-        <View>
+        <View style={{paddingHorizontal : 15}}>
           <View style={styles.outer}>
             <Text style={styles.title}>Loan tenure (years)</Text>
             <View
@@ -236,6 +237,7 @@ const EMI = () => {
             maximumTrackTintColor="#00B386"
             thumbTintColor="#00B386"
           />
+        </View>
         </View>
 
         <View style={styles.btns}>
@@ -394,7 +396,7 @@ const styles = StyleSheet.create({
   btns: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginVertical: 20,
+    marginVertical: 10,
   },
   btn: {
     paddingHorizontal: 20,

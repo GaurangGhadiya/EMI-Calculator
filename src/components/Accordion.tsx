@@ -85,8 +85,8 @@ marginBottom :5
       backgroundColor: 'white',
       borderWidth: 1,
       borderRadius: 5,
-      marginBottom: 15,
-      marginTop : 0
+      marginBottom: 20,
+      marginTop : 10
     }
   });
   

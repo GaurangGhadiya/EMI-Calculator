@@ -128,8 +128,9 @@ const GST = () => {
       />
       <View style={styles.container}>
         {/* <Text style={styles.name}>SIP Calculator</Text> */}
-        <View>
-          <View>
+        <View style={styles.bottom1}>
+        <View style={{paddingHorizontal : 15}}>
+          <View >
             <RadioGroup
               radioButtons={radioButtons}
               onPress={setSelectedId}
@@ -185,7 +186,7 @@ const GST = () => {
             thumbTintColor="#00B386"
           />
         </View>
-        <View>
+        <View style={{paddingHorizontal : 15}}>
           <View style={styles.outer}>
             <Text style={styles.title}>Tax slab</Text>
             <View
@@ -225,6 +226,7 @@ const GST = () => {
             maximumTrackTintColor="#00B386"
             thumbTintColor="#00B386"
           />
+        </View>
         </View>
 
         <View style={styles.btns}>
@@ -358,7 +360,7 @@ const styles = StyleSheet.create({
   btns: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginVertical: 20,
+    marginVertical: 10,
   },
   btn: {
     paddingHorizontal: 20,
