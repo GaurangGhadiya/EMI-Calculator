@@ -1,6 +1,7 @@
 import {
   Keyboard,
   SafeAreaView,
+  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -11,6 +12,7 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import Slider from '@react-native-community/slider';
+import PieChart from 'react-native-pie-chart'
 
 const Calculator = () => {
   const [data, setdata] = useState({
@@ -90,6 +92,7 @@ const Calculator = () => {
     });
   };
   return (
+    <ScrollView>
     <SafeAreaView style={styles.main}>
       <StatusBar
         animated={true}
@@ -262,10 +265,32 @@ const Calculator = () => {
                 ₹{data.total?.toLocaleString('en-IN')}
               </Text>
             </View>
+           <View style={styles.chart}>
+           <PieChart
+            widthAndHeight={250}
+            series={[data.amount,data?.return]}
+            sliceColor={['#EEF0FF', '#5367FF']}
+            coverRadius={0.66}
+            coverFill={'#FFF'}
+          />
+           </View>
+           <View style={styles.lables}>
+            <View style={styles.lables1}>
+              <View style={[styles.lable, {backgroundColor : "#EEF0FF"}]}></View>
+            <Text>Invested amount</Text>
+            </View>
+            <View style={styles.lables1}>
+            <View style={[styles.lable, {backgroundColor : "#5367FF"}]}></View>
+
+            <Text>Est. returns</Text>
+            </View>
+           </View>
           </View>
         )}
+
       </View>
     </SafeAreaView>
+    </ScrollView>
   );
 };
 
@@ -384,4 +409,27 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'black',
   },
+  chart : {
+    flex : 1,
+    justifyContent : 'center',
+    alignItems : 'center',
+    marginVertical : 20
+  },
+  lables: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginBottom : 20,
+    fontWeight : '400'
+  },
+  lable: {
+    height : 7,
+    width : 15,
+    marginRight : 7,
+    borderRadius : 10
+    
+  },
+  lables1:{
+    flexDirection : "row",
+    alignItems : "center",
+  }
 });
