@@ -272,7 +272,7 @@ const Calculator = () => {
            <View style={styles.chart}>
            <PieChart
             widthAndHeight={250}
-            series={[data.amount,data?.return]}
+            series={[parseInt(data?.amount),parseInt(data?.return)]}
             sliceColor={['#EEF0FF', '#5367FF']}
             coverRadius={0.66}
             coverFill={'#FFF'}
