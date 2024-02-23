@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   title: {
-    fontSize: 20,
+    fontSize: 16,
     color: 'black',
   },
   title2: {

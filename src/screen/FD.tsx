@@ -220,7 +220,7 @@ const FD = () => {
                 placeholderStyle={styles.placeholderStyle}
                 selectedTextStyle={styles.selectedTextStyle}
                 inputSearchStyle={styles.inputSearchStyle}
-                itemTextStyle={{fontSize: 14}}
+                itemTextStyle={{fontSize: 14, color : "black"}}
                 data={data1}
                 maxHeight={300}
                 labelField="label"
@@ -384,7 +384,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   title: {
-    fontSize: 20,
+    fontSize: 16,
     color: 'black',
   },
   title2: {
