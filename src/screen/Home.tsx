@@ -2,6 +2,7 @@ import {
   FlatList,
   Image,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -18,10 +19,10 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.safe}>
       {/* <ScrollView> */}
-      <View>
-        <View>
+      <View style={{marginTop : 22}}>
+        {/* <View>
           <Text style={styles.heading}>Calculators</Text>
-        </View>
+        </View> */}
         <View>
           <FlatList
             data={Data}
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 8,
     width: '47.5%',
-    minHeight: 230,
+    minHeight: 222,
     position: 'relative',
    
     
