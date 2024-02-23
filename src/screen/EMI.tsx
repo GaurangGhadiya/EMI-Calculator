@@ -13,6 +13,8 @@ import {
 import React, {useState} from 'react';
 import Slider from '@react-native-community/slider';
 import PieChart from 'react-native-pie-chart'
+import EMIData from '../data/EMI';
+import Accordion from '../components/Accordion';
 
 const EMI = () => {
   const [data, setdata] = useState({
@@ -95,7 +97,7 @@ const EMI = () => {
     });
   };
   return (
-    <ScrollView>
+    <ScrollView style={{minHeight : "100%", backgroundColor : "white"}}>
 
     <SafeAreaView style={styles.main}>
       <StatusBar
@@ -296,16 +298,18 @@ const EMI = () => {
            <View style={styles.lables}>
             <View style={styles.lables1}>
               <View style={[styles.lable, {backgroundColor : "#EEF0FF"}]}></View>
-            <Text>Principal amount</Text>
+            <Text style={{color : "black"}} >Principal amount</Text>
             </View>
             <View style={styles.lables1}>
             <View style={[styles.lable, {backgroundColor : "#5367FF"}]}></View>
 
-            <Text>Interest amount</Text>
+            <Text style={{color : "black"}}>Interest amount</Text>
             </View>
            </View>
           </View>
         )}
+                <Accordion data={EMIData}/>
+
       </View>
     </SafeAreaView>
     </ScrollView>

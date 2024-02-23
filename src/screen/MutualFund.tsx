@@ -13,6 +13,8 @@ import {
   import React, {useState} from 'react';
   import Slider from '@react-native-community/slider';
 import PieChart from 'react-native-pie-chart'
+import Accordion from '../components/Accordion';
+import MFData from '../data/MF';
   
   const MutualFund = () => {
     const [data, setdata] = useState({
@@ -85,7 +87,7 @@ import PieChart from 'react-native-pie-chart'
       });
     };
     return (
-      <ScrollView>
+      <ScrollView style={{minHeight : "100%", backgroundColor : "white"}}>
       <SafeAreaView style={styles.main}>
         <StatusBar
           animated={true}
@@ -279,16 +281,18 @@ import PieChart from 'react-native-pie-chart'
            <View style={styles.lables}>
             <View style={styles.lables1}>
               <View style={[styles.lable, {backgroundColor : "#EEF0FF"}]}></View>
-            <Text>Invested amount</Text>
+            <Text style={{color : "black"}}>Invested amount</Text>
             </View>
             <View style={styles.lables1}>
             <View style={[styles.lable, {backgroundColor : "#5367FF"}]}></View>
 
-            <Text>Est. returns</Text>
+            <Text style={{color : "black"}}>Est. returns</Text>
             </View>
            </View>
             </View>
           )}
+                  <Accordion data={MFData}/>
+
         </View>
       </SafeAreaView>
       </ScrollView>

@@ -15,6 +15,8 @@ import Slider from '@react-native-community/slider';
 import PieChart from 'react-native-pie-chart'
 
 import {Dropdown} from 'react-native-element-dropdown';
+import FDData from '../data/FD';
+import Accordion from '../components/Accordion';
 
 const data1 = [
   {label: 'Years', value: '1'},
@@ -111,7 +113,7 @@ const FD = () => {
     });
   };
   return (
-    <ScrollView>
+    <ScrollView style={{minHeight : "100%", backgroundColor : "white"}}>
     <SafeAreaView style={styles.main}>
       <StatusBar
         animated={true}
@@ -338,16 +340,18 @@ const FD = () => {
            <View style={styles.lables}>
             <View style={styles.lables1}>
               <View style={[styles.lable, {backgroundColor : "#EEF0FF"}]}></View>
-            <Text>Total investment</Text>
+            <Text style={{color : "black"}} >Total investment</Text>
             </View>
             <View style={styles.lables1}>
             <View style={[styles.lable, {backgroundColor : "#5367FF"}]}></View>
 
-            <Text>Total interest</Text>
+            <Text style={{color : "black"}}>Total interest</Text>
             </View>
            </View>
           </View>
         )}
+                <Accordion data={FDData}/>
+
       </View>
     </SafeAreaView>
     </ScrollView>

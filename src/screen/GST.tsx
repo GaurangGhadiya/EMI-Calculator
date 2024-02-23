@@ -1,6 +1,7 @@
 import {
   Keyboard,
   SafeAreaView,
+  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -12,6 +13,8 @@ import {
 import React, {useEffect, useMemo, useState} from 'react';
 import Slider from '@react-native-community/slider';
 import RadioGroup from 'react-native-radio-buttons-group';
+import Accordion from '../components/Accordion';
+import GSTData from '../data/GST';
 
 const GST = () => {
   const [selectedId, setSelectedId] = useState('1');
@@ -114,6 +117,7 @@ const GST = () => {
     Keyboard.dismiss();
   };
   return (
+    <ScrollView style={{minHeight : "100%", backgroundColor : "white"}}>
     <SafeAreaView style={styles.main}>
       <StatusBar
         animated={true}
@@ -269,8 +273,11 @@ const GST = () => {
             </View>
           </View>
         )}
+                <Accordion data={GSTData}/>
+
       </View>
     </SafeAreaView>
+    </ScrollView>
   );
 };
 

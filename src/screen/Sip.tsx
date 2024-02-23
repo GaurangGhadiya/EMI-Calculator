@@ -13,6 +13,8 @@ import {
 import React, {useState} from 'react';
 import Slider from '@react-native-community/slider';
 import PieChart from 'react-native-pie-chart'
+import Accordion from '../components/Accordion';
+import SipData from '../data/Sip';
 
 const Calculator = () => {
   const [data, setdata] = useState({
@@ -92,7 +94,7 @@ const Calculator = () => {
     });
   };
   return (
-    <ScrollView>
+    <ScrollView style={{minHeight : "100%", backgroundColor : "white"}}>
     <SafeAreaView style={styles.main}>
       <StatusBar
         animated={true}
@@ -277,16 +279,17 @@ const Calculator = () => {
            <View style={styles.lables}>
             <View style={styles.lables1}>
               <View style={[styles.lable, {backgroundColor : "#EEF0FF"}]}></View>
-            <Text>Invested amount</Text>
+            <Text style={{color : "black"}}>Invested amount</Text>
             </View>
             <View style={styles.lables1}>
             <View style={[styles.lable, {backgroundColor : "#5367FF"}]}></View>
 
-            <Text>Est. returns</Text>
+            <Text style={{color : "black"}}>Est. returns</Text>
             </View>
            </View>
           </View>
         )}
+        <Accordion data={SipData}/>
 
       </View>
     </SafeAreaView>
