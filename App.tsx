@@ -20,7 +20,7 @@ const StackNav = () => {
 
 return(
   <Stack.Navigator
-   initialRouteName="Home"
+  //  initialRouteName="Home"
     screenOptions={{
     statusBarColor: '#00B386',
     headerStyle: {
@@ -82,7 +82,7 @@ function App(): React.JSX.Element {
       screenOptions={{
         headerShown: false,
       }}>
-      <Drawer.Screen name="Home" component={StackNav} />
+      <Drawer.Screen name="Home1" component={StackNav} />
     </Drawer.Navigator>
 </NavigationContainer>;
 

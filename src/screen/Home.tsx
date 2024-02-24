@@ -10,9 +10,9 @@ import {
   View,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import { useNavigation} from '@react-navigation/native';
 import Data from "../data/Home"
-import { InterstitialAd, AdEventType, TestIds, useInterstitialAd } from 'react-native-google-mobile-ads';
+import {  TestIds, useInterstitialAd } from 'react-native-google-mobile-ads';
 
 
 const gap = 18;
@@ -25,7 +25,6 @@ const [redirectPath, setRedirectPath] = useState("")
 
 
   useEffect(() => {
-    // Start loading the interstitial straight away
     load();
   }, [load]);
 
