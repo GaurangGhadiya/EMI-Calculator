@@ -15,10 +15,23 @@ import Slider from '@react-native-community/slider';
 import RadioGroup from 'react-native-radio-buttons-group';
 import Accordion from '../components/Accordion';
 import GSTData from '../data/GST';
+import BannerAds from '../adMobAds/BannerAds';
+import { TestIds, useRewardedAd } from 'react-native-google-mobile-ads';
 
 const GST = () => {
   const [selectedId, setSelectedId] = useState('1');
+  const { isLoaded, isClosed, load, show } = useRewardedAd(TestIds.REWARDED);
+  useEffect(() => {
+    // Start loading the interstitial straight away
+    load();
+  }, [load]);
 
+  useEffect(() => {
+    if (isClosed) {
+      // Action after the ad is closed
+      load();
+    }
+  }, [isClosed]);
   useEffect(() => {
     calculate();
   }, [selectedId]);
@@ -229,8 +242,10 @@ const GST = () => {
         </View>
         </View>
 
+        <BannerAds />
+
         <View style={styles.btns}>
-          <TouchableOpacity style={styles.btn} onPress={calculate}>
+          <TouchableOpacity style={styles.btn} onPress={() => isLoaded ?  show() :calculate()}>
             <Text style={styles.btnName}>Calculate</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -278,6 +293,8 @@ const GST = () => {
                 <Accordion data={GSTData}/>
 
       </View>
+      <BannerAds />
+
     </SafeAreaView>
     </ScrollView>
   );

@@ -1,4 +1,5 @@
 import {
+  Alert,
   FlatList,
   Image,
   SafeAreaView,
@@ -8,14 +9,33 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
-import {useNavigation} from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import Data from "../data/Home"
+import { InterstitialAd, AdEventType, TestIds, useInterstitialAd } from 'react-native-google-mobile-ads';
+
 
 const gap = 18;
 
 const Home = () => {
+  const { isLoaded, isClosed, load, show } = useInterstitialAd(TestIds.INTERSTITIAL);
+const [redirectPath, setRedirectPath] = useState("")
   const navigation = useNavigation();
+
+
+
+  useEffect(() => {
+    // Start loading the interstitial straight away
+    load();
+  }, [load]);
+
+  useEffect(() => {
+    if (isClosed) {
+      navigation.navigate(redirectPath);
+      load();
+      setRedirectPath("")
+    }
+  }, [isClosed, navigation]);
   return (
     <SafeAreaView style={styles.safe}>
       {/* <ScrollView> */}
@@ -31,7 +51,16 @@ const Home = () => {
               return (
                 <TouchableOpacity
                   style={styles.card}
-                  onPress={() => navigation.navigate(item?.redirect)}>
+                  onPress={() => { 
+                    if (isLoaded) {
+                      show();
+                      setRedirectPath(item?.redirect)
+                    } else {
+                      navigation.navigate(item?.redirect)
+                      // No advert ready to show yet
+                    }
+
+                   }}>
                   <Image
                     source={{uri: item.image}}
                     style={styles.backgroundImage}></Image>

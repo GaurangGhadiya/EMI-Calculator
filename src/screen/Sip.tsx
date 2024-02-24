@@ -10,13 +10,28 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Slider from '@react-native-community/slider';
 import PieChart from 'react-native-pie-chart'
 import Accordion from '../components/Accordion';
 import SipData from '../data/Sip';
+import BannerAds from '../adMobAds/BannerAds';
+import { TestIds, useRewardedAd } from 'react-native-google-mobile-ads';
 
 const Calculator = () => {
+  const { isLoaded, isClosed, load, show } = useRewardedAd(TestIds.REWARDED);
+  useEffect(() => {
+    // Start loading the interstitial straight away
+    load();
+  }, [load]);
+
+  useEffect(() => {
+    if (isClosed) {
+      // Action after the ad is closed
+      load();
+    }
+  }, [isClosed]);
+
   const [data, setdata] = useState({
     investment: 1000,
     intrest: 12,
@@ -226,9 +241,9 @@ const Calculator = () => {
           />
         </View>
         </View>
-
+      <BannerAds />
         <View style={styles.btns}>
-          <TouchableOpacity style={styles.btn} onPress={calculate}>
+          <TouchableOpacity style={styles.btn} onPress={() => isLoaded ?  show() :calculate()}>
             <Text style={styles.btnName}>Calculate</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -294,6 +309,8 @@ const Calculator = () => {
         <Accordion data={SipData}/>
 
       </View>
+      <BannerAds />
+
     </SafeAreaView>
     </ScrollView>
   );

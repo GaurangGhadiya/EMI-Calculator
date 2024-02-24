@@ -1,4 +1,7 @@
 {
   "name": "EMI_Calculator",
-  "displayName": "EMI Calculator"
+  "displayName": "EMI Calculator",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-9472507449954023~8628693192"
+  }
 }
