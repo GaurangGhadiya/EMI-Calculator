@@ -13,6 +13,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigation} from '@react-navigation/native';
 import Data from "../data/Home"
 import {  TestIds, useInterstitialAd } from 'react-native-google-mobile-ads';
+import BannerAds from '../adMobAds/BannerAds';
+import ShareWhatsApp from '../components/ShareWhatsApp';
 
 
 const gap = 18;
@@ -36,14 +38,16 @@ const [redirectPath, setRedirectPath] = useState("")
     }
   }, [isClosed, navigation]);
   return (
-    <SafeAreaView style={styles.safe}>
-      {/* <ScrollView> */}
+      <ScrollView style={styles.safe}>
+    <SafeAreaView>
       <View style={{marginTop : 22}}>
         {/* <View>
           <Text style={styles.heading}>Calculators</Text>
         </View> */}
         <View>
           <FlatList
+          // showsVerticalScrollIndicator={false}
+          scrollEnabled={false}
             data={Data}
             keyExtractor={item => item.id}
             renderItem={({item}) => {
@@ -75,8 +79,10 @@ const [redirectPath, setRedirectPath] = useState("")
           />
         </View>
       </View>
-      {/* </ScrollView> */}
+      {/* <BannerAds />
+      <ShareWhatsApp /> */}
     </SafeAreaView>
+      </ScrollView>
   );
 };
 

@@ -146,7 +146,6 @@ const styles = StyleSheet.create({
     marginTop: 15,
     borderBottomWidth: 0,
     borderBottomColor: '#dedede',
-    borderBottomWidth: 1,
   },
   bottomDrawerSection: {
     marginBottom: 15,
