@@ -57,7 +57,7 @@ return(
   <Stack.Screen name="EMI" options={{title : "EMI Calculator"}} component={EMI} />
   <Stack.Screen name="GST" options={{title : "GST Calculator"}} component={GST} />
   <Stack.Screen name="AboutUs" options={{title : "About Us"}} component={AboutUs} />
-  <Stack.Screen name="Settings" options={{title : "Setting"}} component={Setting} />
+  <Stack.Screen name="Setting" options={{title : "Settings"}} component={Setting} />
 </Stack.Navigator>
 )
 }
