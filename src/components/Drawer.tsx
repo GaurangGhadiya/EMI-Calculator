@@ -1,5 +1,7 @@
 import React from 'react';
-import {View, StyleSheet, Text, Image, Share, Button} from 'react-native';
+import {View, StyleSheet, Text, Image, Button, Linking} from 'react-native';
+import Share from 'react-native-share';
+
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import {Avatar, Title} from 'react-native-paper';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -9,13 +11,13 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const DrawerList = [
   {icon: 'home-outline', label: 'Home', navigateTo: 'Home'},
-  // {icon: 'cog-outline', label: 'Setting', navigateTo: 'Home'},
+  // {icon: 'cog-outline', label: 'Settings', navigateTo: 'Setting'},
   // {icon: 'share-variant-outline', label: 'Share', navigateTo: 'Home'},
-  // {icon: 'information-outline', label: 'AboutUs', navigateTo: 'Home'},
+  // {icon: 'information-outline', label: 'About Us', navigateTo: 'AboutUs'},
   // {icon: 'shield-check-outline', label: 'Privacy Policy', navigateTo: 'Home'},
-  // {icon: 'star-outline', label: 'Rate & Review', navigateTo: 'Home'},
+  // {icon: 'star-outline', label: 'Rate & Reviews', navigateTo: 'Home'},
 ];
-const DrawerLayout = ({icon, label, navigateTo} :any) => {
+const DrawerLayout = ({icon, label, navigateTo}: any) => {
   const navigation = useNavigation();
   // console.log(userData);
   return (
@@ -23,49 +25,42 @@ const DrawerLayout = ({icon, label, navigateTo} :any) => {
       icon={({color, size}) => <Icon name={icon} color={color} size={size} />}
       label={label}
       onPress={() => {
-        navigation.navigate(navigateTo);
+        if (label == 'Share') {
+          handleShare();
+        } else if (label == 'Privacy Policy') {
+          Linking.openURL(
+            'https://www.termsfeed.com/live/cb1baf40-9914-4c94-a0ab-c3f46bf8c640',
+          );
+        } else {
+          navigation.navigate(navigateTo);
+        }
       }}
     />
   );
 };
 const handleShare = async () => {
   try {
-    const result = await Share.share({
+    const options = {
       message: 'Check out this awesome app!',
       url: 'https://google.com',
-      title: 'Emi Calculator',
-    });
-
-    if (result.action === Share.sharedAction) {
-      if (result.activityType) {
-        // Shared with activity type of result.activityType
-        console.log('Shared with:', result.activityType);
-      } else {
-        // Shared
-        console.log('Shared');
-      }
-    } else if (result.action === Share.dismissedAction) {
-      // Dismissed
-      console.log('Dismissed');
-    }
-  } catch (error) {
-    console.error('Error sharing:', error.message);
-  }
+      title: 'EMI Calculator',
+    };
+    await Share.open(options);
+  } catch (error) {}
 };
 const DrawerItems = props => {
- 
-    return DrawerList.map((el, i) => {
-      return (
-        <DrawerLayout
-          key={i}
-          icon={el.icon}
-          label={el.label}
-          navigateTo={el.navigateTo}
-          // onPress={() => handleShare()}
-        />
-      );
-    });
-  };
+  return DrawerList.map((el, i) => {
+    return (
+      <DrawerLayout
+        key={i}
+        icon={el.icon}
+        label={el.label}
+        navigateTo={el.navigateTo}
+        // onPress={() => handleShare()}
+      />
+    );
+  });
+};
 function DrawerData(props) {
   return (
     <View style={{flex: 1}}>
@@ -75,12 +70,17 @@ function DrawerData(props) {
             <View style={styles.userInfoSection}>
               <View style={{flexDirection: 'row', marginTop: 15}}>
                 <Image
-                  source={require("../assets/logo.png")}
+                  source={require('../assets/logo.png')}
                   // size={50}
 
-                  style={{marginTop: 5, height : 50, width: 50}}
+                  style={{marginTop: 5, height: 50, width: 50}}
                 />
-                <View style={{marginLeft: 10, flexDirection: 'column', justifyContent : "center"}}>
+                <View
+                  style={{
+                    marginLeft: 10,
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                  }}>
                   <Title style={styles.title}>EMI Calculator</Title>
                   {/* <Text style={styles.caption} numberOfLines={1}>
                     adarshthakur210@gmail.com
@@ -90,7 +90,7 @@ function DrawerData(props) {
             </View>
           </TouchableOpacity>
           <View style={styles.drawerSection}>
-      {/* <Button title="Share" onPress={handleShare} /> */}
+            {/* <Button title="Share" onPress={handleShare} /> */}
 
             <DrawerItems />
           </View>

@@ -13,6 +13,8 @@ import Icon from 'react-native-vector-icons/Entypo';
 import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import DrawerData from './src/components/Drawer';
+import AboutUs from './src/screen/AboutUs';
+import Setting from './src/screen/Setting';
 
 const Stack = createNativeStackNavigator();
 const StackNav = () => {
@@ -54,6 +56,8 @@ return(
   <Stack.Screen name="MutualFund" options={{title : "Mutual Fund Calculator"}} component={MutualFund} />
   <Stack.Screen name="EMI" options={{title : "EMI Calculator"}} component={EMI} />
   <Stack.Screen name="GST" options={{title : "GST Calculator"}} component={GST} />
+  <Stack.Screen name="AboutUs" options={{title : "About Us"}} component={AboutUs} />
+  <Stack.Screen name="Settings" options={{title : "Setting"}} component={Setting} />
 </Stack.Navigator>
 )
 }
