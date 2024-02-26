@@ -1,4 +1,4 @@
-package com.emi_calculator
+package com.emi_calculator_fianance
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

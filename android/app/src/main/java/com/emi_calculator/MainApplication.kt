@@ -1,4 +1,4 @@
-package com.emi_calculator
+package com.emi_calculator_fianance
 
 import android.app.Application
 import com.facebook.react.PackageList
