@@ -11,11 +11,11 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const DrawerList = [
   {icon: 'home-outline', label: 'Home', navigateTo: 'Home'},
-  // {icon: 'cog-outline', label: 'Settings', navigateTo: 'Setting'},
-  // {icon: 'share-variant-outline', label: 'Share', navigateTo: 'Home'},
-  // {icon: 'information-outline', label: 'About Us', navigateTo: 'AboutUs'},
-  // {icon: 'shield-check-outline', label: 'Privacy Policy', navigateTo: 'Home'},
-  // {icon: 'star-outline', label: 'Rate & Reviews', navigateTo: 'Home'},
+  {icon: 'cog-outline', label: 'Settings', navigateTo: 'Setting'},
+  {icon: 'share-variant-outline', label: 'Share', navigateTo: 'Home'},
+  {icon: 'information-outline', label: 'About Us', navigateTo: 'AboutUs'},
+  {icon: 'shield-check-outline', label: 'Privacy Policy', navigateTo: 'Home'},
+  {icon: 'star-outline', label: 'Rate & Reviews', navigateTo: 'Home'},
 ];
 const DrawerLayout = ({icon, label, navigateTo}: any) => {
   const navigation = useNavigation();

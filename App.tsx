@@ -15,6 +15,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import DrawerData from './src/components/Drawer';
 import AboutUs from './src/screen/AboutUs';
 import Setting from './src/screen/Setting';
+import ReleaseNotes from './src/screen/ReleaseNotes';
 
 const Stack = createNativeStackNavigator();
 const StackNav = () => {
@@ -58,6 +59,7 @@ return(
   <Stack.Screen name="GST" options={{title : "GST Calculator"}} component={GST} />
   <Stack.Screen name="AboutUs" options={{title : "About Us"}} component={AboutUs} />
   <Stack.Screen name="Setting" options={{title : "Settings"}} component={Setting} />
+  <Stack.Screen name="ReleaseNotes" options={{title : "Release Notes"}} component={ReleaseNotes} />
 </Stack.Navigator>
 )
 }
