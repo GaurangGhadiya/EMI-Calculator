@@ -11,11 +11,11 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const DrawerList = [
   {icon: 'home-outline', label: 'Home', navigateTo: 'Home'},
-  // {icon: 'cog-outline', label: 'Settings', navigateTo: 'Setting'},
-  // {icon: 'share-variant-outline', label: 'Share', navigateTo: 'Home'},
-  // {icon: 'information-outline', label: 'About Us', navigateTo: 'AboutUs'},
-  // {icon: 'shield-check-outline', label: 'Privacy Policy', navigateTo: 'Home'},
-  // {icon: 'star-outline', label: 'Rate & Reviews', navigateTo: 'Home'},
+  {icon: 'cog-outline', label: 'Settings', navigateTo: 'Setting'},
+  {icon: 'share-variant-outline', label: 'Share', navigateTo: 'Home'},
+  {icon: 'information-outline', label: 'About Us', navigateTo: 'AboutUs'},
+  {icon: 'shield-check-outline', label: 'Privacy Policy', navigateTo: 'Home'},
+  {icon: 'star-outline', label: 'Rate & Reviews', navigateTo: 'Home'},
 ];
 const DrawerLayout = ({icon, label, navigateTo}: any) => {
   const navigation = useNavigation();
@@ -31,6 +31,11 @@ const DrawerLayout = ({icon, label, navigateTo}: any) => {
           Linking.openURL(
             'https://www.termsfeed.com/live/cb1baf40-9914-4c94-a0ab-c3f46bf8c640',
           );
+        }
+        else if (label == 'Rate & Reviews') {
+          Linking.openURL(
+            'https://play.google.com/store/apps/details?id=com.emi_calculator_fianance',
+          );
         } else {
           navigation.navigate(navigateTo);
         }
@@ -41,8 +46,8 @@ const DrawerLayout = ({icon, label, navigateTo}: any) => {
 const handleShare = async () => {
   try {
     const options = {
-      message: 'Check out this awesome app!',
-      url: 'https://google.com',
+      message: '',
+      url: 'https://play.google.com/store/apps/details?id=com.emi_calculator_fianance',
       title: 'EMI Calculator',
     };
     await Share.open(options);

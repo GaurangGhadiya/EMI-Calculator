@@ -60,7 +60,6 @@ const [redirectPath, setRedirectPath] = useState("")
                       setRedirectPath(item?.redirect)
                     } else {
                       navigation.navigate(item?.redirect)
-                      // No advert ready to show yet
                     }
 
                    }}>
@@ -79,8 +78,8 @@ const [redirectPath, setRedirectPath] = useState("")
           />
         </View>
       </View>
-      {/* <BannerAds />
-      <ShareWhatsApp /> */}
+      <BannerAds />
+      <ShareWhatsApp />
     </SafeAreaView>
       </ScrollView>
   );

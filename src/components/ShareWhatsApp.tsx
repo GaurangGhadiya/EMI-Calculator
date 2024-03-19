@@ -9,8 +9,8 @@ const ShareWhatsApp = () => {
           const shareOptions = {
             // social: Share.Social.WHATSAPP,
             title: 'Share via',
-            message: 'This is the content you want to share on social media.',
-            url: 'https://www.youtube.com/', 
+            message: '',
+            url: 'https://play.google.com/store/apps/details?id=com.emi_calculator_fianance', 
           };
           await Share.open(shareOptions);
         } catch (error) {
