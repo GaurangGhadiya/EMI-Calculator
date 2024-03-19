@@ -245,7 +245,9 @@ const GST = () => {
         <BannerAds />
 
         <View style={styles.btns}>
-          <TouchableOpacity style={styles.btn} onPress={() => isLoaded ?  show() :calculate()}>
+          <TouchableOpacity style={styles.btn} onPress={() =>
+            //  isLoaded ?  show() :
+             calculate()}>
             <Text style={styles.btnName}>Calculate</Text>
           </TouchableOpacity>
           <TouchableOpacity

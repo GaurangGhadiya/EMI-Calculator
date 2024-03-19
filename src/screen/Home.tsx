@@ -55,12 +55,12 @@ const [redirectPath, setRedirectPath] = useState("")
                 <TouchableOpacity
                   style={styles.card}
                   onPress={() => { 
-                    if (isLoaded) {
-                      show();
-                      setRedirectPath(item?.redirect)
-                    } else {
+                    // if (isLoaded) {
+                    //   show();
+                    //   setRedirectPath(item?.redirect)
+                    // } else {
                       navigation.navigate(item?.redirect)
-                    }
+                    // }
 
                    }}>
                   <Image
